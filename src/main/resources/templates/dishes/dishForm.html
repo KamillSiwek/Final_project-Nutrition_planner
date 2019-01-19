@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'dish')}">
+<head>
+    <title>Nutrition Planner</title>
+
+</head>
+<!--/*@thymesVar id="dish" type="pl.coderslab.nutrition_planner.entities.Dish"*/-->
+
+<body>
+
+
+<form class="form-horizontal" th:object="${dish}" method="post">
+    <div class="form-group has-feedback">
+        <div>
+            <div class="ctn-heading">
+                <h1 class="panel-title">Dish Information</h1>
+            </div>
+            <div class="ctn-body">
+                <div class="ctn-row">
+                    <div class="col-md-3 form-group">
+                        <label>Dish Description:</label>
+                        <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
+                        <input th:replace="~{fragments/inputField :: input ('Recipe text', 'recipeText', 'text')}"/>
+                    </div>
+                </div>
+                <div class="ctn-row">
+                    <div class="col-md-9 form-group">
+                        <input th:replace="~{fragments/selectField :: select ('Category', 'products', ${dish.products})}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div class="ctn-row">
+                    <div class="col-md-11">
+                        <h1 class="panel-title">Products</h1>
+                    </div>
+                    <div class="col-md-1">
+                        <a class="btn btn-default" href="#" th:href="@{'/dish/' + ${dish.id} + '/products'}" role="button">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="ctn-body">
+                <div class="ctn-row">
+                    <div class="col-md-12">
+                        <ul th:if="${not #lists.isEmpty(dish.products)}">
+                            <li th:each="product : ${dish.products}"
+                                th:text="${(product.getName() +
+                            ' ' + product.getProteins() +
+                            ' - ' + product.getCarbs() + ' ' + product.getFats() + ' ' + product.getKcal())}">-
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button th:with="text=${dish['new']} ? 'Add Dish' : 'Update Dish'"
+            class="btn btn-default" type="submit" th:text="${text}">Add
+        Owner
+    </button>
+</form>
+
+
+</div>
+
+
+
+
+</body>
+</html>

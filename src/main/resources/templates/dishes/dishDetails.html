@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<!--/*@thymesVar id="dish" type="pl.coderslab.nutrition_planner.dto.DishDto"*/-->
+<body>
+
+
+<h2>Dish Information</h2>
+
+
+<table class="table table-striped" th:object="${dish}">
+    <tr>
+        <th>Name</th>
+        <td><b th:text="*{name}"></b></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td><b th:text="*{recipeText}"></b></td>
+    </tr>
+</table>
+
+<a href="#" class="btn btn-default" th:href="@{'/dish/' + ${dish.id} + '/update'}">Edit dish</a>
+
+
+<br/>
+<br/>
+<br/>
+<h2>Products</h2>
+
+<table class="table table-striped">
+    <tr th:each="product : ${dish.products}">
+        <td valign="top">
+            <dl class="dl-horizontal">
+                <dt>Name</dt>
+                <dd th:text="${product.name}"/>
+                </dd>
+                <dt>Kcal</dt>
+                <dd th:text="${product.kcal}"/>
+                </dd>
+                <dt>Proteins</dt>
+                <dd th:text="${product.proteins}"/>
+                </dd>
+                <dt>Fats</dt>
+                <dd th:text="${product.fats}"/>
+                </dd>
+                <dt>Carbs</dt>
+                <dd th:text="${product.carbs}"/>
+                </dd>
+            </dl>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+
+</html>

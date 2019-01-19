@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'dish')}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Product list</title>
+
+</head>
+<body>
+
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div>
+
+                <div>
+                    <div>
+                        <div>
+                            <h1>Products</h1>
+                        </div>
+                        <div class="col-md-1">
+                            <a class="btn btn-default" href="#" th:href="@{'/dish/' + ${dish.id} + '/product/new'}" role="button">New</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div >
+
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(dish.products)}">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>Description</th>
+                                <th>View</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                                                      </tr>
+                            <tr th:each="product : ${dish.products}">
+                                <td th:text="${product.name} + ' ' + ${product.kcal} + ' ' + ${product.proteins} + ' ' + ${product.fats} + ' ' + ${product.carbs}">-</td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${dish.id} + '/product/' + ${product.id} + '/show'}">View</a></td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${dish.id} + '/product/' + ${product.id} + '/update'}">Update</a></td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${dish.id} + '/product/' + ${product.id} + '/delete'}">Delete</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'user')}">
+<head></head>
+<body>
+<h1>Login</h1>
+<form name='f' action="login" method='POST'>
+    <script type="text/javascript">
+        function validate() {
+            if (document.f.username.value == "" && document.f.password.value == "") {
+                alert("Username and password are required");
+                document.f.username.focus();
+                return false;
+            }
+            if (document.f.username.value == "") {
+                alert("Username is required");
+                document.f.username.focus();
+                return false;
+            }
+            if (document.f.password.value == "") {
+                alert("Password is required");
+                document.f.password.focus();
+                return false;
+            }
+        }
+    </script>
+
+    <div class="container">
+        <form th:action="@{/login}" method="POST" class="form-signin">
+            <h3 class="form-signin-heading" th:text="Welcome"></h3>
+            <br/>
+
+            <input type="text" id="email" name="email"  th:placeholder="Email"
+                   class="form-control" /> <br/>
+            <input type="password"  th:placeholder="Password"
+                   id="password" name="password" class="form-control" /> <br />
+
+            <div align="center" th:if="${param.error}">
+                <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+            </div>
+            <button class="btn btn-default" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+        </form>
+    </div>
+    <form th:action="@{/registration}" method="get">
+        <button class="btn btn-default" type="Submit">Go To Registration Page</button>
+    </form>
+    <p><a href="/" th:href="@{/}">Back to home page</a></p>
+</form>
+</body>
+</html>

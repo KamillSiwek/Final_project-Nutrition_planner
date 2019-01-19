@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'dish')}">
+<head>
+    <title>Nutrition Planner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!--/*@thymesVar id="dish" type="pl.coderslab.nutrition_planner.dto.DishDto"*/-->
+<span th:text="${dish.name}"> Title </span>
+<span th:text="${dish.recipeText}"> Author </span>
+<form th:action="@{'/dish/{id}'(id=${dish.id})}" th:method="delete">
+    <input type="hidden" name="_method" value="delete"/>
+    <button class="btn btn-default" type="submit">Delete</button>
+</form>
+<a href="#" class="btn btn-default" th:href="@{'/dish/' + ${dish.id} + '/update'}">Update</a>
+
+</body>
+</html>
