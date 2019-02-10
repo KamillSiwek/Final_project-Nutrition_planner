@@ -2,7 +2,7 @@
 This is a final project which i made during my curse in Coders Lab. 
 This is application designed for nutrition planning.
 
-**NOTICE:** This aplication is still in development.
+**NOTICE:** This aplication is still in development. Code is placed in project_draft branch.
 
 ## Built With
 
